@@ -1,15 +1,24 @@
+import { useState } from "react";
 import styled from "styled-components"
 import imagem from "../assets/forca0.png"
 
-export default function Jogo(){
+export default function Jogo({palavras, ativarBotao, setAtivarBotao}){
+
+    const [palavraSorteada, setPalavraSorteada] = useState(palavras[Math.floor(Math.random() * palavras.length)]);
+
+    const traco = ' _'.repeat(palavraSorteada.length);
+
+    function comecarJogo(){
+        setAtivarBotao(true);
+    }
 
     return(
         <Style>
              <Container>           
                 <Img src={imagem}/>
                 <div>
-                    <Button>Escolher Palavra</Button>
-                    <H1>Escolher Palavra</H1>
+                    <Button onClick={comecarJogo}>Escolher Palavra</Button>
+                    <H1>{comecarJogo ? traco : ""}</H1>
                 </div>
             </Container>
         </Style>

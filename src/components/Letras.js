@@ -2,7 +2,7 @@ import styled from "styled-components";
 import Letra from "./Letra";
 
 
-export default function Letras(){
+export default function Letras({ativarBotao}){
 
     const alfabeto = [
         "a", "b", "c", "d", "e", "f", "g", "h", "i",
@@ -12,7 +12,7 @@ export default function Letras(){
     return(
         <Container>
             <Style>
-             {alfabeto.map((a)=><Letra alfabeto={a}/>)}
+             {alfabeto.map((a)=><Letra  ativarBotao={ativarBotao} key={alfabeto} alfabeto={a}/>)}
             </Style>
         </Container>
     )
