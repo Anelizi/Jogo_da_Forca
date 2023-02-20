@@ -2,17 +2,11 @@ import styled from "styled-components";
 import Letra from "./Letra";
 
 
-export default function Letras({ativarBotao}){
-
-    const alfabeto = [
-        "a", "b", "c", "d", "e", "f", "g", "h", "i",
-        "j", "k", "l", "m", "n", "o", "p", "q", "r",
-        "s", "t", "u", "v", "w", "x", "y", "z"]
-
+export default function Letras({alfabetoLetra, setAlfabetoLetra}){
     return(
         <Container>
             <Style>
-             {alfabeto.map((a)=><Letra  ativarBotao={ativarBotao} key={alfabeto} alfabeto={a}/>)}
+             {alfabetoLetra.map((a)=><Letra key={a} setAlfabetoLetra={setAlfabetoLetra}  alfabeto={a}/>)}
             </Style>
         </Container>
     )

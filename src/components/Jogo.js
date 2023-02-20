@@ -1,24 +1,36 @@
 import { useState } from "react";
 import styled from "styled-components"
-import imagem from "../assets/forca0.png"
+import imagem0 from "../assets/forca0.png"
+import imagem1 from "../assets/forca1.png"
+import imagem2 from "../assets/forca2.png"
+import imagem3 from "../assets/forca3.png"
+import imagem4 from "../assets/forca4.png"
+import imagem5 from "../assets/forca5.png"
+import imagem6 from "../assets/forca6.png"
 
-export default function Jogo({palavras, ativarBotao, setAtivarBotao}){
+export default function Jogo({sortear, setSortear, palavra, setPalavra}){
+    const imagens = [imagem0, imagem1, imagem2, imagem3, imagem4, imagem5, imagem6];
 
-    const [palavraSorteada, setPalavraSorteada] = useState(palavras[Math.floor(Math.random() * palavras.length)]);
+    function renderizaPalavra() {
+        const palavra = sortear.split('');
+        setSortear(palavra);
 
-    const traco = ' _'.repeat(palavraSorteada.length);
-
-    function comecarJogo(){
-        setAtivarBotao(true);
+        let traco = [];
+        palavra.forEach(() => traco.push(" _"));
+        setPalavra(traco);
     }
 
+    function iniciarJogo(){
+        renderizaPalavra();
+    }
+    
     return(
         <Style>
              <Container>           
-                <Img src={imagem}/>
+                <Img src={imagem0}/>
                 <div>
-                    <Button onClick={comecarJogo}>Escolher Palavra</Button>
-                    <H1>{comecarJogo ? traco : ""}</H1>
+                    <Button onClick={iniciarJogo}>Escolher Palavra</Button>
+                    <H1>{palavra}</H1>
                 </div>
             </Container>
         </Style>
@@ -68,5 +80,5 @@ const H1 = styled.h1`
     font-weight: 700;
     bottom: 40px;
     right: 40px;
-    color: aquamarine;
+    color: #000000;
 `
