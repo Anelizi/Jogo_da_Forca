@@ -1,13 +1,13 @@
 import styled from "styled-components";
 
-export default function Letra({alfabeto, setAlfabetoLetra}){
+export default function Letra({alfabeto,alfabetoLetra, setAlfabetoLetra}){
     
-    function letra(l){
-        
+    function letraEscolhida(l){
+        setAlfabetoLetra([...alfabetoLetra, l])
     }
 
     return(
-        <Button disabled={alfabeto.includes(alfabeto)} onclick={() => letra(alfabeto)}>{alfabeto}</Button>
+        <Button onClick={() => letraEscolhida(alfabeto)} disabled={alfabetoLetra.includes(alfabeto)} >{alfabeto}</Button>
     )
 }
 
@@ -23,9 +23,10 @@ const Button = styled.button`
         margin: 5px;
         cursor: pointer;
         text-transform: uppercase;
-        &:disabled{
-        background-color: #9FAAB5;
-        color: #798A9F;
-        border: 1px solid #9FAAB5;
-    }
+        &:disabled {
+            cursor: default;
+            background-color: #9FAAB5;
+            color: #798A9F;
+            border: 1px solid #9FAAB5;
+        }
 `

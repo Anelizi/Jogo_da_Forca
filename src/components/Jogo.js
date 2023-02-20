@@ -8,8 +8,9 @@ import imagem4 from "../assets/forca4.png"
 import imagem5 from "../assets/forca5.png"
 import imagem6 from "../assets/forca6.png"
 
-export default function Jogo({sortear, setSortear, palavra, setPalavra}){
+export default function Jogo({palavras, palavra, setPalavra, setAlfabetoLetra}){
     const imagens = [imagem0, imagem1, imagem2, imagem3, imagem4, imagem5, imagem6];
+    const [sortear, setSortear] = useState(palavras[Math.floor(Math.random() * palavras.length)]);
 
     function renderizaPalavra() {
         const palavra = sortear.split('');
@@ -22,12 +23,13 @@ export default function Jogo({sortear, setSortear, palavra, setPalavra}){
 
     function iniciarJogo(){
         renderizaPalavra();
+        setAlfabetoLetra([]);
     }
     
     return(
         <Style>
              <Container>           
-                <Img src={imagem0}/>
+                <Img src={imagem0} alt="imgem da forca"/>
                 <div>
                     <Button onClick={iniciarJogo}>Escolher Palavra</Button>
                     <H1>{palavra}</H1>

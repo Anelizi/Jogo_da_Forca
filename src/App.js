@@ -6,18 +6,15 @@ import alfabeto from "./alfabeto";
 
 export default function App() {
   const [alfabetoLetra, setAlfabetoLetra] = useState(alfabeto);
-  const [sortear, setSortear] = useState(
-    palavras[Math.floor(Math.random() * palavras.length)]
-  );
   const [palavra, setPalavra] = useState([]);
 
   return (
     <>
       <Jogo
+        palavras={palavras}
         palavra={palavra}
         setPalavra={setPalavra}
-        sortear={sortear} 
-        setSortear={setSortear} 
+        setAlfabetoLetra={setAlfabetoLetra}
       />
       <Letras
         alfabetoLetra={alfabetoLetra}
