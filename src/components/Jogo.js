@@ -8,22 +8,24 @@ import imagem4 from "../assets/forca4.png"
 import imagem5 from "../assets/forca5.png"
 import imagem6 from "../assets/forca6.png"
 
-export default function Jogo({palavras, palavra, setPalavra, setAlfabetoLetra}){
+export default function Jogo({setSortear, sortear, palavra, setPalavra, setLetraEscolhida, setTentativas, tentativas}){
+
     const imagens = [imagem0, imagem1, imagem2, imagem3, imagem4, imagem5, imagem6];
-    const [sortear, setSortear] = useState(palavras[Math.floor(Math.random() * palavras.length)]);
+
 
     function renderizaPalavra() {
         const palavra = sortear.split('');
         setSortear(palavra);
 
-        let traco = [];
+        const traco = [];
         palavra.forEach(() => traco.push(" _"));
         setPalavra(traco);
     }
 
     function iniciarJogo(){
         renderizaPalavra();
-        setAlfabetoLetra([]);
+        setLetraEscolhida([]);
+        setTentativas(0);
     }
     
     return(
