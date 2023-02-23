@@ -6,29 +6,31 @@ import alfabeto from "./alfabeto";
 
 export default function App() {
   const [letraEscolhida, setLetraEscolhida] = useState(alfabeto);
-  const [sortear, setSortear] = useState(palavras[Math.floor(Math.random() * palavras.length)]);
+  const [palavraSorteada , setPalavraSorteada]= useState([]);
   const [palavra, setPalavra] = useState([]);
+
   const [tentativas, setTentativas] = useState(0);
 
   return (
     <>
       <Jogo
-        sortear={sortear}
-        setSortear={setSortear}
+        palavras={palavras}
         palavra={palavra}
         setPalavra={setPalavra}
         setLetraEscolhida={setLetraEscolhida}
         setTentativas={setTentativas}
         tentativas={tentativas}
+        setPalavraSorteada={setPalavraSorteada}
       />
       <Letras
-        sortear={sortear}
-        setSortear={setSortear}
         palavra={palavra}
+        setPalavra={setPalavra}
         letraEscolhida={letraEscolhida}
         setLetraEscolhida={setLetraEscolhida}
         setTentativas={setTentativas}
         tentativas={tentativas}
+        setPalavraSorteada={setPalavraSorteada}
+        palavrSorteada={palavraSorteada}
       />
     </>
   );

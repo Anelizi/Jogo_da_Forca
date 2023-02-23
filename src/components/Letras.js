@@ -3,26 +3,42 @@ import alfabeto from "../alfabeto";
 
 export default function Letras({
   palavra,
+  setPalavra,
   setLetraEscolhida,
   letraEscolhida,
   setTentativas,
   tentativas,
+  palavrSorteada
 }) {
 
     function letraEscolha(l){
-        setLetraEscolhida([...letraEscolhida, l]);
-        if(palavra.includes(l)){
-            letraCorreta(l)
-        }else{
-            letraErrada(l)
-        }
+      setLetraEscolhida([...letraEscolhida,l]);
+      if (palavrSorteada.includes(l)){
+        letraCorreta(l)
+      }else{
+        letraErrada(l)
+      }
     }
 
     function letraCorreta(l){
+      const palavraMudada = [...palavra];
+      palavrSorteada.forEach((letra, i) => {
+        if ((palavrSorteada) [i] === l){
+          palavraMudada[i] = letra;
+        }
+      });
+      setPalavra(palavraMudada);
 
+      if(!palavrSorteada.includes(' _')){
+        return alert("você ganhou");
+      }
     }
 
     function letraErrada(l){
+      setTentativas(tentativas + 1);
+      if(tentativas === 6){
+        return alert("você perdeu");
+      }
     }
 
   return (
