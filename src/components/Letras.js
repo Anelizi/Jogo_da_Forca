@@ -8,7 +8,8 @@ export default function Letras({
   letraEscolhida,
   setTentativas,
   tentativas,
-  palavrSorteada
+  palavrSorteada,
+  setCor
 }) {
 
     function letraEscolha(l){
@@ -28,18 +29,20 @@ export default function Letras({
         }
       });
       setPalavra(palavraMudada);
-
-      if(!palavrSorteada.includes(' _')){
-        return alert("você ganhou");
+      if(!palavraMudada.includes(' _')){
+        setCor("verde")
       }
     }
 
     function letraErrada(l){
       setTentativas(tentativas + 1);
-      if(tentativas === 6){
-        return alert("você perdeu");
+      if(tentativas === 5){
+        setCor("vermelho")
+        setLetraEscolhida(alfabeto)
+        setPalavra(palavrSorteada)
       }
     }
+
 
   return (
     <Container>

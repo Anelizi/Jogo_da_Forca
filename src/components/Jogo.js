@@ -1,4 +1,3 @@
-import { useState } from "react";
 import styled from "styled-components";
 import imagem0 from "../assets/forca0.png";
 import imagem1 from "../assets/forca1.png";
@@ -16,6 +15,8 @@ export default function Jogo({
   setTentativas,
   tentativas,
   setPalavraSorteada,
+  setCor,
+  cor
 }) {
   const imagens = [
     imagem0,
@@ -27,7 +28,7 @@ export default function Jogo({
     imagem6,
   ];
 
-    const sordea = Math.floor(Math.random() * palavra.length);
+  const sordea = Math.floor(Math.random() * palavra.length);
   
   function renderizaPalavra() {
     const palavraSortea = palavras[sordea];
@@ -43,15 +44,16 @@ export default function Jogo({
     renderizaPalavra();
     setLetraEscolhida([]);
     setTentativas(0);
+    setCor('preto')
   }
 
   return (
     <Style>
       <Container>
-        <Img src={imagem0} alt="imgem da forca" />
+        <Img src={imagens[tentativas]} alt="imgem da forca" />
         <div>
           <Button onClick={iniciarJogo}>Escolher Palavra</Button>
-          <H1>{palavra}</H1>
+          <H1 cor={cor}>{palavra}</H1>
         </div>
       </Container>
     </Style>
@@ -101,5 +103,5 @@ const H1 = styled.h1`
   font-weight: 700;
   bottom: 40px;
   right: 40px;
-  color: #000000;
+  color: ${({cor}) => cor === 'verde' ? '#27AE60' : (cor === 'vermelho' ? '#FF0000' : 'preto')};
 `;

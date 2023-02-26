@@ -8,12 +8,14 @@ export default function App() {
   const [letraEscolhida, setLetraEscolhida] = useState(alfabeto);
   const [palavraSorteada , setPalavraSorteada]= useState([]);
   const [palavra, setPalavra] = useState([]);
-
   const [tentativas, setTentativas] = useState(0);
+  const [cor, setCor] = useState("");
 
   return (
     <>
       <Jogo
+        cor={cor}
+        setCor={setCor}
         palavras={palavras}
         palavra={palavra}
         setPalavra={setPalavra}
@@ -23,6 +25,7 @@ export default function App() {
         setPalavraSorteada={setPalavraSorteada}
       />
       <Letras
+        setCor={setCor}
         palavra={palavra}
         setPalavra={setPalavra}
         letraEscolhida={letraEscolhida}
