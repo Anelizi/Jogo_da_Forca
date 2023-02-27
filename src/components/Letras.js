@@ -9,45 +9,49 @@ export default function Letras({
   setTentativas,
   tentativas,
   palavrSorteada,
-  setCor
+  setCor,
 }) {
+  function letraEscolha(l) {
+    setLetraEscolhida([...letraEscolhida, l]);
+    palavrSorteada.includes(l) ? letraCorreta(l) : letraErrada(l);
+  }
 
-    function letraEscolha(l){
-      setLetraEscolhida([...letraEscolhida,l]);
-      palavrSorteada.includes(l) ? letraCorreta(l) : letraErrada(l);
-    }
-
-    function letraCorreta(l){
-      const palavraMudada = [...palavra];
-      palavrSorteada.forEach((letra, i) => {
-        if ((palavrSorteada) [i] === l){
-          palavraMudada[i] = letra;
-        }
-      });
-      setPalavra(palavraMudada);
-      if(!palavraMudada.includes(' _')){
-        setCor("verde")
-        setLetraEscolhida(alfabeto)
-        setPalavra(palavrSorteada)
+  function letraCorreta(l) {
+    const palavraMudada = [...palavra];
+    palavrSorteada.forEach((letra, i) => {
+      if (palavrSorteada[i] === l) {
+        palavraMudada[i] = letra;
       }
+    });
+    setPalavra(palavraMudada);
+    if (!palavraMudada.includes(" _")) {
+      setCor("verde");
+      setLetraEscolhida(alfabeto);
+      setPalavra(palavrSorteada);
     }
+  }
 
-    function letraErrada(l){
-      setTentativas(tentativas + 1);
-      if(tentativas === 5){
-        setCor("vermelho")
-        setLetraEscolhida(alfabeto)
-        setPalavra(palavrSorteada)
-      }
+  function letraErrada() {
+    setTentativas(tentativas + 1);
+    if (tentativas === 5) {
+      setCor("vermelho");
+      setLetraEscolhida(alfabeto);
+      setPalavra(palavrSorteada);
     }
+  }
 
-  return (
+  return(
     <Container>
       <Style>
-      {alfabeto.map((a) => (
-        <Button key={a} data-test="letter" onClick={() => letraEscolha(a)} disabled={letraEscolhida.includes(a)}>
-          {a}
-        </Button>))} 
+        {alfabeto.map((a) => (
+          <Button
+            key={a}
+            data-test="letter"
+            onClick={() => letraEscolha(a)}
+            disabled={letraEscolhida.includes(a)}>
+            {a}
+          </Button>
+        ))}
       </Style>
     </Container>
   );
@@ -70,21 +74,21 @@ const Style = styled.div`
   flex-wrap: wrap;
 `;
 const Button = styled.button`
-        width: 40px;
-        height: 40px;
-        font-weight: 700;
-        font-size: 16px;
-        background-color: #E1ECF4;
-        border: 1px solid #7AA7C7;
-        color: #39739D;
-        border-radius: 3px;
-        margin: 5px;
-        cursor: pointer;
-        text-transform: uppercase;
-        &:disabled {
-            cursor: default;
-            background-color: #9FAAB5;
-            color: #798A9F;
-            border: 1px solid #9FAAB5;
-        }
-`
+  width: 40px;
+  height: 40px;
+  font-weight: 700;
+  font-size: 16px;
+  background-color: #e1ecf4;
+  border: 1px solid #7aa7c7;
+  color: #39739d;
+  border-radius: 3px;
+  margin: 5px;
+  cursor: pointer;
+  text-transform: uppercase;
+  &:disabled {
+    cursor: default;
+    background-color: #9faab5;
+    color: #798a9f;
+    border: 1px solid #9faab5;
+  }
+`;

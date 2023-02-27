@@ -8,7 +8,7 @@ import imagem5 from "../assets/forca5.png";
 import imagem6 from "../assets/forca6.png";
 
 export default function Jogo({
-  palavras,  
+  palavras,
   palavra,
   setPalavra,
   setLetraEscolhida,
@@ -16,7 +16,7 @@ export default function Jogo({
   tentativas,
   setPalavraSorteada,
   setCor,
-  cor
+  cor,
 }) {
   const imagens = [
     imagem0,
@@ -29,13 +29,13 @@ export default function Jogo({
   ];
 
   const sordea = Math.floor(Math.random() * palavra.length);
-  
+
   function renderizaPalavra() {
     const palavraSortea = palavras[sordea];
     const palavraE = palavraSortea.split("");
     setPalavraSorteada(palavraE);
 
-    const traco = palavraE.map(() => ' _')
+    const traco = palavraE.map(() => " _");
     setPalavra(traco);
   }
 
@@ -43,16 +43,24 @@ export default function Jogo({
     renderizaPalavra();
     setLetraEscolhida([]);
     setTentativas(0);
-    setCor('preto')
+    setCor("preto");
   }
 
   return (
     <Style>
       <Container>
-        <Img data-test="game-image" src={imagens[tentativas]} alt="imagem da forca" />
+        <Img
+          data-test="game-image"
+          src={imagens[tentativas]}
+          alt="imagem da forca"
+        />
         <div>
-          <Button data-test="choose-word" onClick={iniciarJogo}>Escolher Palavra</Button>
-          <H1 cor={cor} data-test="word">{palavra}</H1>
+          <Button data-test="choose-word" onClick={iniciarJogo}>
+            Escolher Palavra
+          </Button>
+          <H1 cor={cor} data-test="word">
+            {palavra}
+          </H1>
         </div>
       </Container>
     </Style>
@@ -102,5 +110,10 @@ const H1 = styled.h1`
   font-weight: 700;
   bottom: 40px;
   right: 40px;
-  color: ${({cor}) => cor === 'verde' ? '#27AE60' : (cor === 'vermelho' ? '#FF0000' : 'preto' && '#000000')};
+  color: ${({ cor }) =>
+    cor === "verde"
+      ? "#27AE60"
+      : cor === "vermelho"
+      ? "#FF0000"
+      : "preto" && "#000000"};
 `;
