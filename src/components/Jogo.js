@@ -35,8 +35,7 @@ export default function Jogo({
     const palavraE = palavraSortea.split("");
     setPalavraSorteada(palavraE);
 
-    const traco = [];
-    palavraE.forEach(() => traco.push(" _"));
+    const traco = palavraE.map(() => ' _')
     setPalavra(traco);
   }
 
@@ -50,10 +49,10 @@ export default function Jogo({
   return (
     <Style>
       <Container>
-        <Img src={imagens[tentativas]} alt="imgem da forca" />
+        <Img data-test="game-image" src={imagens[tentativas]} alt="imagem da forca" />
         <div>
-          <Button onClick={iniciarJogo}>Escolher Palavra</Button>
-          <H1 cor={cor}>{palavra}</H1>
+          <Button data-test="choose-word" onClick={iniciarJogo}>Escolher Palavra</Button>
+          <H1 cor={cor} data-test="word">{palavra}</H1>
         </div>
       </Container>
     </Style>
@@ -103,5 +102,5 @@ const H1 = styled.h1`
   font-weight: 700;
   bottom: 40px;
   right: 40px;
-  color: ${({cor}) => cor === 'verde' ? '#27AE60' : (cor === 'vermelho' ? '#FF0000' : 'preto')};
+  color: ${({cor}) => cor === 'verde' ? '#27AE60' : (cor === 'vermelho' ? '#FF0000' : 'preto' && '#000000')};
 `;

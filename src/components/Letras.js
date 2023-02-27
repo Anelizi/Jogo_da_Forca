@@ -14,11 +14,7 @@ export default function Letras({
 
     function letraEscolha(l){
       setLetraEscolhida([...letraEscolhida,l]);
-      if (palavrSorteada.includes(l)){
-        letraCorreta(l)
-      }else{
-        letraErrada(l)
-      }
+      palavrSorteada.includes(l) ? letraCorreta(l) : letraErrada(l);
     }
 
     function letraCorreta(l){
@@ -43,11 +39,13 @@ export default function Letras({
       }
     }
 
-
   return (
     <Container>
       <Style>
-      {alfabeto.map(a => (<Button key={a} onClick={() => letraEscolha(a)} disabled={letraEscolhida.includes(a)}>{a}</Button>))} 
+      {alfabeto.map((a) => (
+        <Button key={a} data-test="letter" onClick={() => letraEscolha(a)} disabled={letraEscolhida.includes(a)}>
+          {a}
+        </Button>))} 
       </Style>
     </Container>
   );
