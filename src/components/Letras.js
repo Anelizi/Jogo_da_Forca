@@ -27,6 +27,8 @@ export default function Letras({
       setPalavra(palavraMudada);
       if(!palavraMudada.includes(' _')){
         setCor("verde")
+        setLetraEscolhida(alfabeto)
+        setPalavra(palavrSorteada)
       }
     }
 
